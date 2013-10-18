@@ -19,7 +19,7 @@ sb = new Spacebrew.Client( config.server, config.name, config.description );  //
 
 
 function setUpPubAndSub(){
-	for(var i = 0; i < config.publishers.length, i++){
+	for(var i = 0; i < config.publishers.length; i++){
 		console.log('creating publisher with: ', config.publishers[i].name, config.publishers[i].signal.type, config.publishers[i].signal.default);
 		sb.addPublish( config.publishers[i].name, config.publishers[i].signal.type, config.publishers[i].signal.default );
 	}
@@ -47,7 +47,7 @@ function onOpen() {
 
     board.on("ready", function() {
 
-    	for(var i = 0; i < config.publishers.length, i++){
+    	for(var i = 0; i < config.publishers.length; i++){
     		sensors[i] = new five.Sensor( config.publishers[i].params );
 
     		sensors[i].scale( config.publishers[i].params.scale ).on("data", function(){
