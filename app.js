@@ -50,7 +50,9 @@ function onOpen() {
 
     board.on("ready", function() {
 
-    	for(var i = 0; i < config.publishers.length; i++){
+    	for(var index = 0; index < config.publishers.length; index++){
+            var i = index;//local variable to maintain the scope in listener
+
     		sensors[i] = new five.Sensor( config.publishers[i].params );
 
     		sensors[i].scale( config.publishers[i].params.scale ).on("data", function(x, y){
