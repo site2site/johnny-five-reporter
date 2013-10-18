@@ -4,76 +4,68 @@
   "server": "server.sitetosite.co",
   "location": "Studio-X NYC",
   "publishers": [
-    { "microphone-1": 
-      {
-        "name": "microphone NE table",
-        "params": {
-          "pin": "A2",
-          "freq": 2000,
-          "scale": [0,100]
-        },
-        "signal":{
-          "type": "range",
-          "default": 50
-        },
-        "location":{
-          "x": 500,
-          "y": 250
-        }
+    {
+      "name": "microphone NE table",
+      "params": {
+        "pin": "A0",
+        "freq": 2000,
+        "scale": [0,100]
+      },
+      "signal":{
+        "type": "range",
+        "default": 50
+      },
+      "location":{
+        "x": 500,
+        "y": 250
       }
     },
     {
-      "microphone-2": {
-        "name": "microphone NW window",
-        "params": {
-          "pin": "A2",
-          "freq": 2000,
-          "scale": [0,100]
-        },
-        "signal":{
-          "type": "range",
-          "default": 50
-        },
-        "location":{
-          "x": 200,
-          "y": 250
-        }
+      "name": "microphone NW window",
+      "params": {
+        "pin": "A1",
+        "freq": 2000,
+        "scale": [0,100]
+      },
+      "signal":{
+        "type": "range",
+        "default": 50
+      },
+      "location":{
+        "x": 200,
+        "y": 250
       }
     },
     {
-      "microphone-3": {
-        "name": "microphone S hall",
-        "params": {
-          "pin": "A2",
-          "freq": 2000,
-          "scale": [0,100]
-        },
-        "signal":{
-          "type": "range",
-          "default": 50
-        },
-        "location":{
-          "x": 700,
-          "y": 250
-        }
+      "name": "microphone S hall",
+      "params": {
+        "pin": "A2",
+        "freq": 2000,
+        "scale": [0,100]
+      },
+      "signal":{
+        "type": "range",
+        "default": 50
+      },
+      "location":{
+        "x": 700,
+        "y": 250
       }
     },
     {
-      "microphone-4": {
-        "name": "microphone NW table",
-        "params": {
-          "pin": "A2",
-          "freq": 2000,
-          "scale": [0,100]
-        },
-        "signal":{
-          "type": "range",
-          "default": 50
-        },
-        "location":{
-          "x": 200,
-          "y": 400
-        }
+      "name": "microphone NW table",
+      "params": {
+        "pin": "A3",
+        "freq": 2000,
+        "scale": [0,100]
+      },
+      "signal":{
+        "type": "range",
+        "default": 50
+      },
+      "location":{
+        "x": 200,
+        "y": 400
       }
     }
   ]

@@ -53,8 +53,10 @@ function onOpen() {
     	for(var i = 0; i < config.publishers.length; i++){
     		sensors[i] = new five.Sensor( config.publishers[i].params );
 
-    		sensors[i].scale( config.publishers[i].params.scale ).on("data", function(){
+    		sensors[i].scale( config.publishers[i].params.scale ).on("data", function(x, y){
     			console.log( "value: " + this.value );
+    			console.log("x: "+ x);
+    			console.log("y: "+ y);
     			sb.send(config.publishers[i].name, config.publishers[i].signal.type, this.value);
     		});
     	}
