@@ -27,6 +27,9 @@ function setUpPubAndSub(){
 
 setUpPubAndSub();
 
+console.log('config.publishers:');
+console.dir(config.publishers);
+
 
 
 sb.onOpen = onOpen;
