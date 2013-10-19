@@ -94,7 +94,7 @@ function onOpen() {
 
         //set up signal LED
         if(typeof config.subscribers.signal_led !== "undefined"){
-            signal_led = new five.Led{ config.subscribers.signal_led.params };
+            signal_led = new five.Led( config.subscribers.signal_led.params );
         }
 
         //set up push button
