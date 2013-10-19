@@ -105,6 +105,7 @@
 				case "photoresistor":
 					console.log('onRangeMessage name: ' + name + ' value: ' + value);
 					light_level_gradientMap = "yellow, red " + parseInt( value ) + "%";
+					console.log("light_level_gradientMap: " + light_level_gradientMap);
 					GradientMaps.applyGradientMap(light_level_div, light_level_gradientMap);
 					$("#light-level-value").text( value + "%" );
 					break;
