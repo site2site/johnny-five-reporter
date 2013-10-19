@@ -113,19 +113,19 @@
 				case "good mic":
 					var h = parseInt(value)/100 * 400;
 					console.log('*******good mic val: ' + value + ' h: ' + h);
-					$("#good-mic").height( h ).text( value + "%" );
+					$("#good-mic").height( h ).text( (parseInt(value)).toFixed(2) + "%" );
 					break;
 				case "bad mic 1":
 					var h = parseInt(value)/100 * 400;
-					$("#bad-mic-1").height( h ).text( value + "%" );
+					$("#bad-mic-1").height( h ).text( (parseInt(value)).toFixed(2) + "%" );
 					break;
 				case "bad mic 2":
 					var h = parseInt(value)/100 * 400;
-					$("#bad-mic-2").height( h ).text( value + "%" );
+					$("#bad-mic-2").height( h ).text( (parseInt(value)).toFixed(2) + "%" );
 					break;
 				case "bad mic 3":
 					var h = parseInt(value)/100 * 400;
-					$("#bad-mic-3").height( h ).text( value + "%" );
+					$("#bad-mic-3").height( h ).text( (parseInt(value)).toFixed(2) + "%" );
 					break;
 			}
 		}
