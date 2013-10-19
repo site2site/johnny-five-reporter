@@ -91,9 +91,10 @@
 		}
 
 		function onRangeMessage( name, value ){
+			console.log('onRangeMessage name: ' + name + ' value: ' + value);
 			switch(name){
 				case "good mic":
-					$("#good-mic-value").prepend("<li>"+ value + "</li>");
+					$("#good-mic-values").prepend("<li>"+ value + "</li>");
 					break;
 			}
 		}
