@@ -9,6 +9,7 @@
 
     <script type="text/javascript" src="js/jq.js"></script>
 	<script type="text/javascript" src="js/sb-1.3.0.js"></script>
+	<script src='gradientmaps.min.js'></script>
     <script type="text/javascript">
 
 		$(window).on("load", setup);
@@ -16,6 +17,8 @@
 		// Spacebrew Object
 		var sb
 			, led_toggle = false
+			, light_level_div
+			, light_level_gradientMap
 			, app_name = "Johnny-Five Reporter Test"
 			;
 
@@ -43,6 +46,8 @@
 
 			// connect to spacbrew
 			sb.connect();
+
+			light_level_div = document.getElementById('light-level');
 		}	
 
 		/**
@@ -93,6 +98,10 @@
 		function onRangeMessage( name, value ){
 			console.log('onRangeMessage name: ' + name + ' value: ' + value);
 			switch(name){
+				case "photoresistor":
+					light_level_gradientMap = "yellow, red " + parseInt( value ) + "%";
+					GradientMaps.applyGradientMap(target, gradientMap);
+					break;
 				case "good mic":
 					$("#good-mic-values").prepend("<li>"+ value + "</li>");
 					break;
@@ -102,7 +111,7 @@
 	</script>
 	</head>
 
-	<body>
+	<body id="light-level">
 		<button id="btn">Click to toggle LED</button>
 		<div>
 			<br><br><br>
