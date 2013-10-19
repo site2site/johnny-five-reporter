@@ -106,6 +106,7 @@
 					console.log('onRangeMessage name: ' + name + ' value: ' + value);
 					light_level_gradientMap = "yellow, red " + parseInt( value ) + "%";
 					GradientMaps.applyGradientMap(light_level_div, light_level_gradientMap);
+					$("#light-level-value").text( value + "%" );
 					break;
 				case "good mic":
 					$("#good-mic").height( value + "%" ).text( value + "%" );
@@ -128,7 +129,9 @@
 	<body id="light-level">
 		<button id="btn">Click to toggle LED</button>
 		<div>
-			<br><br><br>
+			<br><br>
+			<h1>Light level is <span id="light-level-value">undefined</span>.</h1>
+			<br>
 			<h1>Push button is <span id="message">undefined</span>.</h1>
 		</div>
 		<div id="mic-values">
