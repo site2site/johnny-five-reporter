@@ -108,7 +108,16 @@
 					GradientMaps.applyGradientMap(light_level_div, light_level_gradientMap);
 					break;
 				case "good mic":
-					$("#good-mic-values").prepend("<li>"+ value + "</li>");
+					$("#good-mic").height( value / 10000 + "%" );
+					break;
+				case "bad mic 1":
+					$("#bad-mic-1").height( value / 10000 + "%" );
+					break;
+				case "bad mic 2":
+					$("#bad-mic-2").height( value / 10000 + "%" );
+					break;
+				case "bad mic 3":
+					$("#bad-mic-3").height( value / 10000 + "%" );
 					break;
 			}
 		}
