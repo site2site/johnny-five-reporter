@@ -53,9 +53,6 @@ function setUpPubAndSub(){
 
 setUpPubAndSub();
 
-console.log('config.sensors:');
-console.dir(config.sensors);
-
 
 
 sb.onOpen = onOpen;
@@ -75,63 +72,71 @@ function onOpen() {
 
     board.on("ready", function() {
 
-        //set up all publisher sensors
-    	for(var i in config.publishers.sensors){
-            (function(i) {
-                var sensor = config.publishers.sensors[i];
+        if(typeof config.publishers !== "undefined"){
+            
+            //set up all publisher sensors
+        	for(var i in config.publishers.sensors){
+                (function(i) {
+                    var sensor = config.publishers.sensors[i];
 
-                console.log("setting up sensor " + i);
-                // construct sensor with params from machine.json
-        		sensors[i] = new five.Sensor( sensor.params );
+                    console.log("setting up sensor " + i);
+                    // construct sensor with params from machine.json
+            		sensors[i] = new five.Sensor( sensor.params );
 
-                // set up data listener to publish
-        		sensors[i].scale( sensor.params.scale ).on("data", function(err){
-        			if(err){
-                        console.log('error thrown with message: ' + err);
-                        return false;
-                    }
-                    
-                    if((i + '') === "photoresistor"){
-                        console.log([
-                            i.toString().magenta,
-                            sensor.signal.type.grey,
-                            this.value.toString().cyan
-                            ].join(" "));
-                    }
+                    // set up data listener to publish
+            		sensors[i].scale( sensor.params.scale ).on("data", function(err){
+            			if(err){
+                            console.log('error thrown with message: ' + err);
+                            return false;
+                        }
+                        
+                        if((i + '') === "photoresistor"){
+                            console.log([
+                                i.toString().magenta,
+                                sensor.signal.type.grey,
+                                this.value.toString().cyan
+                                ].join(" "));
+                        }
 
-        			sb.send(i, sensor.signal.type, this.value);
-        		});
-            }(i));
-    	}//end for
+            			sb.send(i, sensor.signal.type, this.value);
+            		});
+                }(i));
+        	}//end for
 
-        //set up signal LED
-        if(typeof config.subscribers.signal_led !== "undefined"){
-            signal_led = new five.Led( config.subscribers.signal_led.params );
+            
+
+
+            //set up push button
+            if(typeof config.publishers.button !== "undefined"){
+                push_button = new five.Button( config.publishers.button.params );
+
+                // "down" the button is pressed
+                push_button.on("down", function() {
+                    console.log("push button down");
+                    sb.send(config.publishers.button.name, config.publishers.button.signal.type, "down");
+                });
+
+                // "hold" the button is pressed for specified time.
+                //        defaults to 500ms (1/2 second)
+                //        set
+                push_button.on("hold", function() {
+                    console.log("push button hold");
+                    sb.send(config.publishers.button.name, config.publishers.button.signal.type, "hold");
+                });
+
+                // "up" the button is released
+                push_button.on("up", function() {
+                    console.log("push button up");
+                    sb.send(config.publishers.button.name, config.publishers.button.signal.type, "up");
+                });
+            }
         }
 
-        //set up push button
-        if(typeof config.publishers.button !== "undefined"){
-            push_button = new five.Button( config.publishers.button.params );
-
-            // "down" the button is pressed
-            push_button.on("down", function() {
-                console.log("push button down");
-                sb.send(config.publishers.button.name, config.publishers.button.signal.type, "down");
-            });
-
-            // "hold" the button is pressed for specified time.
-            //        defaults to 500ms (1/2 second)
-            //        set
-            push_button.on("hold", function() {
-                console.log("push button hold");
-                sb.send(config.publishers.button.name, config.publishers.button.signal.type, "hold");
-            });
-
-            // "up" the button is released
-            push_button.on("up", function() {
-                console.log("push button up");
-                sb.send(config.publishers.button.name, config.publishers.button.signal.type, "up");
-            });
+        if(typeof config.subscribers !== "undefined"){
+            //set up signal LED
+            if(typeof config.subscribers.signal_led !== "undefined"){
+                signal_led = new five.Led( config.subscribers.signal_led.params );
+            }
         }
     });
 
