@@ -26,22 +26,28 @@ var subscribers = {
 
 
 function setUpPubAndSub(){
-	for(var i in config.publishers.sensors){
-		console.log('creating publisher sensor with: ', i, config.publishers.sensors[i].signal.type, config.publishers.sensors[i].signal.default);
-		sb.addPublish( i, config.publishers.sensors[i].signal.type, config.publishers.sensors[i].signal.default );
-	}
+    //set up subscribers
+    if(typeof config.publishers !== "undefined"){
+    	for(var i in config.publishers.sensors){
+    		console.log('creating publisher sensor with: ', i, config.publishers.sensors[i].signal.type, config.publishers.sensors[i].signal.default);
+    		sb.addPublish( i, config.publishers.sensors[i].signal.type, config.publishers.sensors[i].signal.default );
+    	}
 
-    //set up signal button
-    if(typeof config.publishers.button !== "undefined"){
-        console.log('creating publishers push button with: ', config.publishers.button.name, config.publishers.button.signal.type );
-        sb.addPublish( config.publishers.button.name, config.publishers.button.signal.type, config.publishers.button.signal.default );
+        //set up signal button
+        if(typeof config.publishers.button !== "undefined"){
+            console.log('creating publishers push button with: ', config.publishers.button.name, config.publishers.button.signal.type );
+            sb.addPublish( config.publishers.button.name, config.publishers.button.signal.type, config.publishers.button.signal.default );
+        }
     }
 
-    //set up signal LED
-    if(typeof config.subscribers.signal_led !== "undefined"){
-        console.log('creating subscriber signal LED with: ', config.subscribers.signal_led.name, config.subscribers.signal_led.signal.type );
-        sb.addSubscribe( config.subscribers.signal_led.name, config.subscribers.signal_led.signal.type );
-        sb.onBooleanMessage = onBooleanMessage;
+    //set up subscribers
+    if(typeof config.subscribers !== "undefined"){
+        //set up signal LED
+        if(typeof config.subscribers.signal_led !== "undefined"){
+            console.log('creating subscriber signal LED with: ', config.subscribers.signal_led.name, config.subscribers.signal_led.signal.type );
+            sb.addSubscribe( config.subscribers.signal_led.name, config.subscribers.signal_led.signal.type );
+            sb.onBooleanMessage = onBooleanMessage;
+        }
     }
 }
 
