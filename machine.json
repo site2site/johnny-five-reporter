@@ -9,7 +9,7 @@
         "params": {
           "pin": "A0",
           "freq": 500,
-          "scale": [0,10000]
+          "scale": [0,100]
         },
         "signal":{
           "type": "range",
@@ -24,7 +24,7 @@
         "params": {
           "pin": "A1",
           "freq": 500,
-          "scale": [0,10000]
+          "scale": [0,100]
         },
         "signal":{
           "type": "range",
@@ -39,7 +39,7 @@
         "params": {
           "pin": "A2",
           "freq": 500,
-          "scale": [0,10000]
+          "scale": [0,100]
         },
         "signal":{
           "type": "range",
@@ -53,7 +53,7 @@
       "photoresistor": {
         "params": {
           "pin": "A4",
-          "freq": 10000,
+          "freq": 100,
           "scale": [0,100]
         },
         "signal":{
