@@ -3,22 +3,37 @@
   "description": "Reports Johnny-Five sensor values based on manifest in machine.json file",
   "server": "server.sitetosite.co",
   "location": "Studio-X NYC",
-  "publishers": [
-    {
-      "name": "microphone NE table",
+  "publishers":{
+    "sensors": [
+      {
+        "name": "microphone NE table",
+        "params": {
+          "pin": "A0",
+          "freq": 200,
+          "scale": [0,10000]
+        },
+        "signal":{
+          "type": "range",
+          "default": 50
+        },
+        "location":{
+          "x": 500,
+          "y": 250
+        }
+      }
+    ]
+  },
+  "subscribers":{
+    "signal_led": {
+      "type": "led",
+      "name": "signal led",
       "params": {
-        "pin": "A0",
-        "freq": 200,
-        "scale": [0,10000]
+        "pin": 9
       },
       "signal":{
-        "type": "range",
-        "default": 50
-      },
-      "location":{
-        "x": 500,
-        "y": 250
+        "type": "boolean"
       }
     }
-  ]
+  }
+    
 }

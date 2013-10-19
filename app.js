@@ -15,20 +15,32 @@ sb = new Spacebrew.Client( config.server, config.name, config.description );  //
 //sb.addPublish("config", "string", "");	// publish config for handshake
 //sb.addSubscribe("config", "boolean");	// subscription for config handshake
 
-
+var subscribers = {
+    boolean: false,
+    range: false,
+    string: false,
+    custom: false
+};
 
 
 function setUpPubAndSub(){
-	for(var i = 0; i < config.publishers.length; i++){
-		console.log('creating publisher with: ', config.publishers[i].name, config.publishers[i].signal.type, config.publishers[i].signal.default);
-		sb.addPublish( config.publishers[i].name, config.publishers[i].signal.type, config.publishers[i].signal.default );
+	for(var i = 0; i < config.publishers.sensors.length; i++){
+		console.log('creating publisher sensor with: ', config.publishers.sensors[i].name, config.sensors[i].signal.type, config.sensors[i].signal.default);
+		sb.addPublish( config.publishers.sensors[i].name, config.publishers.sensors[i].signal.type, config.publishers.sensors[i].signal.default );
 	}
+
+    //set up signal LED
+    if(typeof config.subscribers.signal_led !== "undefined"){
+        console.log('creating subscriber signal LED with: ', config.subscribers.signal_led.name, config.subscribers.signal_led.signal.type );
+        sb.addSubscribe( config.subscribers.signal_led.name, config.subscribers.signal_led.signal.type );
+        sb.onBooleanMessage = onBooleanMessage;
+    }
 }
 
 setUpPubAndSub();
 
-console.log('config.publishers:');
-console.dir(config.publishers);
+console.log('config.sensors:');
+console.dir(config.sensors);
 
 
 
@@ -45,31 +57,37 @@ function onOpen() {
 	console.log( "Connected through Spacebrew as: " + sb.name() + "." );
 
 
-
     board = new five.Board();
 
     board.on("ready", function() {
 
-    	for(var index = 0; index < config.publishers.length; index++){
+        //set up all publisher sensors
+    	for(var index = 0; index < config.publishers.sensors.length; index++){
             var i = index;//local variable to maintain the scope in listener
 
-    		sensors[i] = new five.Sensor( config.publishers[i].params );
+            // construct sensor with params from machine.json
+    		sensors[i] = new five.Sensor( config.publishers.sensors[i].params );
 
-    		sensors[i].scale( config.publishers[i].params.scale ).on("data", function(err){
+            // set up data listener to publish
+    		sensors[i].scale( config.publishers.sensors[i].params.scale ).on("data", function(err){
     			if(err){
                     console.log('error thrown with message: ' + err);
                     return false;
                 }
                 console.log([
-                    config.publishers[i].name.magenta,
-                    config.publishers[i].signal.type.grey,
+                    config.publishers.sensors[i].name.magenta,
+                    config.publishers.sensors[i].signal.type.grey,
                     this.value.toString().cyan
                     ].join(" "));
 
-    			sb.send(config.publishers[i].name, config.publishers[i].signal.type, this.value);
+    			sb.send(config.publishers.sensors[i].name, config.publishers.sensors[i].signal.type, this.value);
     		});
-    	}
+    	}//end for
 
+        //set up signal LED
+        if(typeof config.subscribers.signal_led !== "undefined"){
+            signal_led = new five.Led{ config.subscribers.signal_led.params };
+        }
     });
 
 }
@@ -78,7 +96,17 @@ function onOpen() {
 
 
 
-
+function onBooleanMessage = function( name, value ){
+    switch(name){
+        case "signal led":
+            if(value == true){
+                signal_led.on();
+            }else{
+                signal_led.off();
+            }
+            break;
+    }
+}
 
 
 
