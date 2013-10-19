@@ -37,6 +37,10 @@
 			// configure the publication and subscription feeds
 			sb.addSubscribe( "push button", "string" );
 			sb.addSubscribe( "good mic", "range" );
+			sb.addSubscribe( "bad mic 1", "range" );
+			sb.addSubscribe( "bad mic 2", "range" );
+			sb.addSubscribe( "bad mic 3", "range" );
+			sb.addSubscribe( "photoresistor", "range" );
 			sb.addPublish( "signal led", "boolean", "false" );
 
 			// override Spacebrew events - this is how you catch events coming from Spacebrew
@@ -96,9 +100,10 @@
 		}
 
 		function onRangeMessage( name, value ){
-			console.log('onRangeMessage name: ' + name + ' value: ' + value);
+			
 			switch(name){
 				case "photoresistor":
+					console.log('onRangeMessage name: ' + name + ' value: ' + value);
 					light_level_gradientMap = "yellow, red " + parseInt( value ) + "%";
 					GradientMaps.applyGradientMap(target, gradientMap);
 					break;
