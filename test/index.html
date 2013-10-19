@@ -60,10 +60,6 @@
 				led_toggle = !led_toggle;
 			});
 
-			$("#btn").on("mouseup", function(){
-				sb.send("signal led", "boolean", led_toggle);
-				led_toggle = !led_toggle;
-			});
 		}
 
 		
