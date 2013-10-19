@@ -53,7 +53,7 @@
       "photoresistor": {
         "params": {
           "pin": "A4",
-          "freq": 100,
+          "freq": 10000,
           "scale": [0,100]
         },
         "signal":{
