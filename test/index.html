@@ -15,6 +15,7 @@
 	      
 		// Spacebrew Object
 		var sb
+			, led_toggle = false;
 			, app_name = "Johnny-Five Reporter Test"
 			;
 
@@ -55,11 +56,13 @@
 			$("#name").html( message );
 
 			$("#btn").on("mousedown", function(){
-				sb.send("signal led", "boolean", true);
+				sb.send("signal led", "boolean", led_toggle);
+				led_toggle = !led_toggle;
 			});
 
 			$("#btn").on("mouseup", function(){
-				sb.send("signal led", "boolean", false);
+				sb.send("signal led", "boolean", led_toggle);
+				led_toggle = !led_toggle;
 			});
 		}
 
@@ -98,7 +101,7 @@
 	</head>
 
 	<body>
-		<button id="btn">Click to fire LED</button>
+		<button id="btn">Click to toggle LED</button>
 		<div>
 			<br><br><br>
 			<h1>Push button is <span id="message">undefined</span>.</h1>

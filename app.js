@@ -130,6 +130,7 @@ function onOpen() {
 
 
 function onBooleanMessage( name, value ){
+    console.log("[onBooleanMessage] received with name: "+ name + " value: " + value);
     switch(name){
         case "signal led":
             if(value == true){
