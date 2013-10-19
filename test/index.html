@@ -57,10 +57,10 @@
 
 			$("#btn").on("click", function(){
 				if(led_toggle == true){
-					sb.send("signal led", "boolean", true);
+					sb.send("signal led", "boolean", "true");
 					led_toggle = false;
 				}else{
-					sb.send("signal led", "boolean", true);
+					sb.send("signal led", "boolean", "false");
 					led_toggle = true;
 				}
 			});
