@@ -4,16 +4,72 @@
   "server": "server.sitetosite.co",
   "location": "Studio-X NYC",
   "publishers":{
-    "sensors":[],
-    "button":{
-      "type": "button",
-      "name": "push button",
-      "params": 8,
-      "signal":{
-        "type": "string",
-        "default": "false"
+    "sensors": [
+      {
+        "name": "good mic",
+        "params": {
+          "pin": "A0",
+          "freq": 500,
+          "scale": [0,10000]
+        },
+        "signal":{
+          "type": "range",
+          "default": 50
+        },
+        "location":{
+          "x": 500,
+          "y": 250
+        }
+      },
+      {
+        "name": "bad mic 1",
+        "params": {
+          "pin": "A1",
+          "freq": 500,
+          "scale": [0,10000]
+        },
+        "signal":{
+          "type": "range",
+          "default": 50
+        },
+        "location":{
+          "x": 500,
+          "y": 250
+        }
+      },
+      {
+        "name": "bad mic 2",
+        "params": {
+          "pin": "A2",
+          "freq": 500,
+          "scale": [0,10000]
+        },
+        "signal":{
+          "type": "range",
+          "default": 50
+        },
+        "location":{
+          "x": 500,
+          "y": 250
+        }
+      },
+      {
+        "name": "photoresistor",
+        "params": {
+          "pin": "A4",
+          "freq": 10000,
+          "scale": [0,10000]
+        },
+        "signal":{
+          "type": "range",
+          "default": 50
+        },
+        "location":{
+          "x": 500,
+          "y": 250
+        }
       }
-    }
+    ]
   },
   "subscribers":{
     "signal_led": {

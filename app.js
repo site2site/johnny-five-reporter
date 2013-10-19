@@ -133,7 +133,7 @@ function onBooleanMessage( name, value ){
     console.log("[onBooleanMessage] received with name: "+ name + " value: " + value);
     switch(name){
         case "signal led":
-            if(value == "true"){
+            if(value == true){
                 signal_led.on();
             }else{
                 signal_led.off();
