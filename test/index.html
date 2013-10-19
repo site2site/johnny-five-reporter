@@ -110,16 +110,20 @@
 					$("#light-level-value").text( value + "%" );
 					break;
 				case "good mic":
-					$("#good-mic").height( value + "%" ).text( value + "%" );
+					var h = parseInt(value) * 400;
+					$("#good-mic").height( h ).text( value + "%" );
 					break;
 				case "bad mic 1":
-					$("#bad-mic-1").height( value + "%" ).text( value + "%" );
+					var h = parseInt(value) * 400;
+					$("#bad-mic-1").height( h ).text( value + "%" );
 					break;
 				case "bad mic 2":
-					$("#bad-mic-2").height( value + "%" ).text( value + "%" );
+					var h = parseInt(value) * 400;
+					$("#bad-mic-2").height( h ).text( value + "%" );
 					break;
 				case "bad mic 3":
-					$("#bad-mic-3").height( value + "%" ).text( value + "%" );
+					var h = parseInt(value) * 400;
+					$("#bad-mic-3").height( h ).text( value + "%" );
 					break;
 			}
 		}
@@ -127,19 +131,21 @@
 	</script>
 	</head>
 
-	<body id="light-level">
-		<button id="btn">Click to toggle LED</button>
-		<div>
-			<br><br>
-			<h1>Light level is <span id="light-level-value">undefined</span>.</h1>
-			<br>
-			<h1>Push button is <span id="message">undefined</span>.</h1>
-		</div>
-		<div id="mic-values">
-			<div id="good-mic"></div>
-			<div id="bad-mic-1"></div>
-			<div id="bad-mic-2"></div>
-			<div id="bad-mic-3"></div>
+	<body>
+		<div id="light-level">
+			<button id="btn">Click to toggle LED</button>
+			<div>
+				<br><br>
+				<h1>Light level is <span id="light-level-value">undefined</span>.</h1>
+				<br>
+				<h1>Push button is <span id="message">undefined</span>.</h1>
+			</div>
+			<div id="mic-values">
+				<div id="good-mic"></div>
+				<div id="bad-mic-1"></div>
+				<div id="bad-mic-2"></div>
+				<div id="bad-mic-3"></div>
+			</div>
 		</div>
 	</body>
 
