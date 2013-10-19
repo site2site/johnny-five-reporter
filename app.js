@@ -55,10 +55,17 @@ function onOpen() {
 
     		sensors[i] = new five.Sensor( config.publishers[i].params );
 
-    		sensors[i].scale( config.publishers[i].params.scale ).on("data", function(x, y){
-    			console.log( "value: " + this.value );
-    			console.log("x: "+ x);
-    			console.log("y: "+ y);
+    		sensors[i].scale( config.publishers[i].params.scale ).on("data", function(err){
+    			if(err){
+                    console.log('error thrown with message: ' + err);
+                    return false;
+                }
+                console.log([
+                    config.publishers[i].name.magenta,
+                    config.publishers[i].signal.type.grey,
+                    this.value.toString().cyan
+                    ].join(" "));
+
     			sb.send(config.publishers[i].name, config.publishers[i].signal.type, this.value);
     		});
     	}

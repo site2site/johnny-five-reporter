@@ -8,8 +8,8 @@
       "name": "microphone NE table",
       "params": {
         "pin": "A0",
-        "freq": 2000,
-        "scale": [0,100]
+        "freq": 200,
+        "scale": [0,10000]
       },
       "signal":{
         "type": "range",
@@ -18,54 +18,6 @@
       "location":{
         "x": 500,
         "y": 250
-      }
-    },
-    {
-      "name": "microphone NW window",
-      "params": {
-        "pin": "A1",
-        "freq": 2000,
-        "scale": [0,100]
-      },
-      "signal":{
-        "type": "range",
-        "default": 50
-      },
-      "location":{
-        "x": 200,
-        "y": 250
-      }
-    },
-    {
-      "name": "microphone S hall",
-      "params": {
-        "pin": "A2",
-        "freq": 2000,
-        "scale": [0,100]
-      },
-      "signal":{
-        "type": "range",
-        "default": 50
-      },
-      "location":{
-        "x": 700,
-        "y": 250
-      }
-    },
-    {
-      "name": "microphone NW table",
-      "params": {
-        "pin": "A3",
-        "freq": 2000,
-        "scale": [0,100]
-      },
-      "signal":{
-        "type": "range",
-        "default": 50
-      },
-      "location":{
-        "x": 200,
-        "y": 400
       }
     }
   ]
