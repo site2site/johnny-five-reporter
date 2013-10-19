@@ -85,11 +85,13 @@ function onOpen() {
                         return false;
                     }
                     console.log('reading from sensor with i: ' + i);
-                    console.log([
-                        i.toString().magenta,
-                        sensor.signal.type.grey,
-                        this.value.toString().cyan
-                        ].join(" "));
+                    if((i + '') === "photoresistor"){
+                        console.log([
+                            i.toString().magenta,
+                            sensor.signal.type.grey,
+                            this.value.toString().cyan
+                            ].join(" "));
+                    }
 
         			sb.send(i, sensor.signal.type, this.value);
         		});
