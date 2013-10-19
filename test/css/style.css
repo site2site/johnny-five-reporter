@@ -62,3 +62,19 @@ a, a:link, a:visited { text-decoration: none; }
    margin:30px auto;
    text-align: center;
 }
+
+#mic-values{
+   display: block;
+   width:70%;
+   height:500px;
+   margin:40px auto;
+   text-align: center;
+}
+
+#good-mic, #bad-mic-1, #bad-mic-2, #bad-mic-3{
+   width:22%;
+   margin-right:2%;
+   height:100%;
+   display: inline-block;
+   color:black;
+}
