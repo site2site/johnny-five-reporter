@@ -55,9 +55,14 @@
 			}
 			$("#name").html( message );
 
-			$("#btn").on("mousedown", function(){
-				sb.send("signal led", "boolean", led_toggle);
-				led_toggle = !led_toggle;
+			$("#btn").on("click", function(){
+				if(led_toggle == true){
+					sb.send("signal led", "boolean", true);
+					led_toggle = false;
+				}else{
+					sb.send("signal led", "boolean", false);
+					led_toggle = true;
+				}
 			});
 
 		}
