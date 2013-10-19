@@ -27,7 +27,7 @@ var subscribers = {
 
 function setUpPubAndSub(){
 	for(var i = 0; i < config.publishers.sensors.length; i++){
-		console.log('creating publisher sensor with: ', config.publishers.sensors[i].name, config.sensors[i].signal.type, config.sensors[i].signal.default);
+		console.log('creating publisher sensor with: ', config.publishers.sensors[i].name, config.publishers.sensors[i].signal.type, config.publishers.sensors[i].signal.default);
 		sb.addPublish( config.publishers.sensors[i].name, config.publishers.sensors[i].signal.type, config.publishers.sensors[i].signal.default );
 	}
 
@@ -99,7 +99,7 @@ function onOpen() {
 
         //set up push button
         if(typeof config.publishers.button !== "undefined"){
-            push_button = new five.Button{ config.publishers.button.params };
+            push_button = new five.Button( config.publishers.button.params );
 
             // "down" the button is pressed
             button.on("down", function() {
@@ -129,7 +129,7 @@ function onOpen() {
 
 
 
-function onBooleanMessage = function( name, value ){
+function onBooleanMessage( name, value ){
     switch(name){
         case "signal led":
             if(value == true){
