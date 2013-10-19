@@ -106,7 +106,8 @@
 					console.log('onRangeMessage name: ' + name + ' value: ' + value);
 					light_level_gradientMap = "yellow, red " + parseInt( value ) + "%";
 					console.log("light_level_gradientMap: " + light_level_gradientMap);
-					GradientMaps.applyGradientMap(light_level_div, light_level_gradientMap);
+					//GradientMaps.applyGradientMap(light_level_div, light_level_gradientMap);
+					$("#light-level").css("backgroundColor", "rgba(128,128,0," + parseInt(value)/100 + ")");
 					$("#light-level-value").text( value + "%" );
 					break;
 				case "good mic":
