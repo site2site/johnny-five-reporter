@@ -1,5 +1,5 @@
 {
-  "name": "johnny-five-reporter",
+  "name": "j5-reporter table middle",
   "description": "Reports Johnny-Five sensor values based on manifest in machine.json file",
   "server": "server.sitetosite.co",
   "location": "Studio-X NYC",
@@ -52,7 +52,7 @@
       },
       "bad mic 3": {
         "params": {
-          "pin": "A4",
+          "pin": "A3",
           "freq": 500,
           "scale": [0,100]
         },
@@ -65,7 +65,7 @@
           "y": 250
         }
       },
-      "photoresistor": {
+      "temperature": {
         "params": {
           "pin": "A4",
           "freq": 10000,
@@ -79,18 +79,6 @@
           "x": 500,
           "y": 250
         }
-      }
-    }
-  },
-  "subscribers":{
-    "signal_led": {
-      "type": "led",
-      "name": "signal led",
-      "params": {
-        "pin": 9
-      },
-      "signal":{
-        "type": "boolean"
       }
     }
   }
