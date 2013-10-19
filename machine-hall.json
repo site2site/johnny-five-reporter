@@ -1,5 +1,5 @@
 {
-  "name": "johnny-five-reporter",
+  "name": "j5-reporter table end",
   "description": "Reports Johnny-Five sensor values based on manifest in machine.json file",
   "server": "server.sitetosite.co",
   "location": "Studio-X NYC",
@@ -52,8 +52,23 @@
       },
       "bad mic 3": {
         "params": {
-          "pin": "A4",
+          "pin": "A3",
           "freq": 500,
+          "scale": [0,100]
+        },
+        "signal":{
+          "type": "range",
+          "default": 50
+        },
+        "location":{
+          "x": 500,
+          "y": 250
+        }
+      },
+      "motion-sensor": {
+        "params": {
+          "pin": 7,
+          "freq": 10000,
           "scale": [0,100]
         },
         "signal":{
