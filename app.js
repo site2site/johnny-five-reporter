@@ -84,7 +84,7 @@ function onOpen() {
                         console.log('error thrown with message: ' + err);
                         return false;
                     }
-                    console.log('reading from sensor with i: ' + i);
+                    
                     if((i + '') === "photoresistor"){
                         console.log([
                             i.toString().magenta,
