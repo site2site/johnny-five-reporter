@@ -102,7 +102,7 @@ function onOpen() {
             push_button = new five.Button( config.publishers.button.params );
 
             // "down" the button is pressed
-            button.on("down", function() {
+            push_button.on("down", function() {
                 console.log("push button down");
                 sb.send(config.publishers.button.name, config.publishers.button.signal.type, "down");
             });
@@ -110,13 +110,13 @@ function onOpen() {
             // "hold" the button is pressed for specified time.
             //        defaults to 500ms (1/2 second)
             //        set
-            button.on("hold", function() {
+            push_button.on("hold", function() {
                 console.log("push button hold");
                 sb.send(config.publishers.button.name, config.publishers.button.signal.type, "hold");
             });
 
             // "up" the button is released
-            button.on("up", function() {
+            push_button.on("up", function() {
                 console.log("push button up");
                 sb.send(config.publishers.button.name, config.publishers.button.signal.type, "up");
             });

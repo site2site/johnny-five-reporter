@@ -55,11 +55,11 @@
 			$("#name").html( message );
 
 			$("#btn").on("mousedown", function(){
-				sb.send("push button", "boolean", true);
+				sb.send("signal led", "boolean", true);
 			});
 
 			$("#btn").on("mouseup", function(){
-				sb.send("push button", "boolean", false);
+				sb.send("signal led", "boolean", false);
 			});
 		}
 
@@ -77,7 +77,7 @@
 			switch(name){
 				case "push button":
 					$("#message").text(value);
-					if(value == true){
+					if(value == "down"){
 						$("body").css("backgroundColor", "salmon");
 					}else{
 						$("body").css("backgroundColor", "lightblue");
