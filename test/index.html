@@ -105,7 +105,7 @@
 				case "photoresistor":
 					console.log('onRangeMessage name: ' + name + ' value: ' + value);
 					light_level_gradientMap = "yellow, red " + parseInt( value ) + "%";
-					GradientMaps.applyGradientMap(light_level_div, gradientMap);
+					GradientMaps.applyGradientMap(light_level_div, light_level_gradientMap);
 					break;
 				case "good mic":
 					$("#good-mic-values").prepend("<li>"+ value + "</li>");
