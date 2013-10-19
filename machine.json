@@ -58,7 +58,7 @@
         "params": {
           "pin": "A4",
           "freq": 10000,
-          "scale": [0,10000]
+          "scale": [0,100]
         },
         "signal":{
           "type": "range",
