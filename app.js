@@ -26,9 +26,9 @@ var subscribers = {
 
 
 function setUpPubAndSub(){
-	for(var i = 0; i < config.publishers.sensors.length; i++){
-		console.log('creating publisher sensor with: ', config.publishers.sensors[i].name, config.publishers.sensors[i].signal.type, config.publishers.sensors[i].signal.default);
-		sb.addPublish( config.publishers.sensors[i].name, config.publishers.sensors[i].signal.type, config.publishers.sensors[i].signal.default );
+	for(var i in config.publishers.sensors){
+		console.log('creating publisher sensor with: ', i, config.publishers.sensors[i].signal.type, config.publishers.sensors[i].signal.default);
+		sb.addPublish( i, config.publishers.sensors[i].signal.type, config.publishers.sensors[i].signal.default );
 	}
 
     //set up signal button
@@ -70,26 +70,30 @@ function onOpen() {
     board.on("ready", function() {
 
         //set up all publisher sensors
-    	for(var index = 0; index < config.publishers.sensors.length; index++){
-            var i = index;//local variable to maintain the scope in listener
+    	for(var i in config.publishers.sensors){
+            (function(i) {
+                var sensor = config.publishers.sensors[i];
 
-            // construct sensor with params from machine.json
-    		sensors[i] = new five.Sensor( config.publishers.sensors[i].params );
+                console.log("setting up sensor " + i);
+                // construct sensor with params from machine.json
+        		sensors[i] = new five.Sensor( sensor.params );
 
-            // set up data listener to publish
-    		sensors[i].scale( config.publishers.sensors[i].params.scale ).on("data", function(err){
-    			if(err){
-                    console.log('error thrown with message: ' + err);
-                    return false;
-                }
-                console.log([
-                    config.publishers.sensors[i].name.magenta,
-                    config.publishers.sensors[i].signal.type.grey,
-                    this.value.toString().cyan
-                    ].join(" "));
+                // set up data listener to publish
+        		sensors[i].scale( sensor.params.scale ).on("data", function(err){
+        			if(err){
+                        console.log('error thrown with message: ' + err);
+                        return false;
+                    }
+                    console.log('reading from sensor with i: ' + i);
+                    console.log([
+                        i.toString().magenta,
+                        sensor.signal.type.grey,
+                        this.value.toString().cyan
+                        ].join(" "));
 
-    			sb.send(config.publishers.sensors[i].name, config.publishers.sensors[i].signal.type, this.value);
-    		});
+        			sb.send(i, sensor.signal.type, this.value);
+        		});
+            }(i));
     	}//end for
 
         //set up signal LED

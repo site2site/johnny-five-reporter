@@ -4,9 +4,8 @@
   "server": "server.sitetosite.co",
   "location": "Studio-X NYC",
   "publishers":{
-    "sensors": [
-      {
-        "name": "good mic",
+    "sensors": {
+      "good mic": {
         "params": {
           "pin": "A0",
           "freq": 500,
@@ -21,8 +20,7 @@
           "y": 250
         }
       },
-      {
-        "name": "bad mic 1",
+      "bad mic 1":{
         "params": {
           "pin": "A1",
           "freq": 500,
@@ -37,8 +35,7 @@
           "y": 250
         }
       },
-      {
-        "name": "bad mic 2",
+      "bad mic 2": {
         "params": {
           "pin": "A2",
           "freq": 500,
@@ -53,8 +50,7 @@
           "y": 250
         }
       },
-      {
-        "name": "photoresistor",
+      "photoresistor": {
         "params": {
           "pin": "A4",
           "freq": 10000,
@@ -69,7 +65,7 @@
           "y": 250
         }
       }
-    ]
+    }
   },
   "subscribers":{
     "signal_led": {
