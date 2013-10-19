@@ -10,6 +10,8 @@ var five = require("johnny-five"),
 // setup spacebrew
 sb = new Spacebrew.Client( config.server, config.name, config.description );  // create spacebrew client object
 
+var signal_led,
+    push_button;
 
 // create the spacebrew subscription channels
 //sb.addPublish("config", "string", "");	// publish config for handshake
@@ -28,6 +30,12 @@ function setUpPubAndSub(){
 		console.log('creating publisher sensor with: ', config.publishers.sensors[i].name, config.sensors[i].signal.type, config.sensors[i].signal.default);
 		sb.addPublish( config.publishers.sensors[i].name, config.publishers.sensors[i].signal.type, config.publishers.sensors[i].signal.default );
 	}
+
+    //set up signal button
+    if(typeof config.publishers.button !== "undefined"){
+        console.log('creating publishers push button with: ', config.publishers.button.name, config.publishers.button.signal.type );
+        sb.addPublish( config.publishers.button.name, config.publishers.button.signal.type, config.publishers.button.signal.default );
+    }
 
     //set up signal LED
     if(typeof config.subscribers.signal_led !== "undefined"){
@@ -87,6 +95,31 @@ function onOpen() {
         //set up signal LED
         if(typeof config.subscribers.signal_led !== "undefined"){
             signal_led = new five.Led{ config.subscribers.signal_led.params };
+        }
+
+        //set up push button
+        if(typeof config.publishers.button !== "undefined"){
+            push_button = new five.Button{ config.publishers.button.params };
+
+            // "down" the button is pressed
+            button.on("down", function() {
+                console.log("push button down");
+                sb.send(config.publishers.button.name, config.publishers.button.signal.type, "down");
+            });
+
+            // "hold" the button is pressed for specified time.
+            //        defaults to 500ms (1/2 second)
+            //        set
+            button.on("hold", function() {
+                console.log("push button hold");
+                sb.send(config.publishers.button.name, config.publishers.button.signal.type, "hold");
+            });
+
+            // "up" the button is released
+            button.on("up", function() {
+                console.log("push button up");
+                sb.send(config.publishers.button.name, config.publishers.button.signal.type, "up");
+            });
         }
     });
 

@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-    <title>Comp-ass Visualization</title>
+    <title>Johnny-Five Reporter Test</title>
 
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/reset.css" type="text/css" media="screen" charset="utf-8" />
@@ -28,14 +28,16 @@
 
 			// set the base description
 			sb.name(app_name);
-			sb.description("Comp-ass visualization");
+			sb.description("Johnny-Five Reporter browser test.");
 
 			// configure the publication and subscription feeds
-			sb.addSubscribe( "seat", "boolean" );
-			sb.addSubscribe( "back", "boolean" );
+			sb.addSubscribe( "push button", "string" );
+			sb.addSubscribe( "good mic", "range" );
+			sb.addPublish( "signal led", "boolean", "false" );
 
 			// override Spacebrew events - this is how you catch events coming from Spacebrew
-			sb.onBooleanMessage = booleanHandler;
+			sb.onStringMessage = onStringMessage;
+			sb.onRangeMessage = onRangeMessage;
 			sb.onOpen = onOpen;
 
 			// connect to spacbrew
@@ -51,6 +53,14 @@
 				message += "<br>You can customize this app's name in the query string by adding <strong>name=your_app_name</strong>."
 			}
 			$("#name").html( message );
+
+			$("#btn").on("mousedown", function(){
+				sb.send("push button", "boolean", true);
+			});
+
+			$("#btn").on("mouseup", function(){
+				sb.send("push button", "boolean", false);
+			});
 		}
 
 		
@@ -61,16 +71,25 @@
 		 * @param  {String} name    Holds name of the subscription feed channel
 		 * @param  {String} value  Holds value received from the subscription feed
 		 */
-		function booleanHandler( name, value ){
+		function onStringMessage( name, value ){
 			console.log("[onStringMessage] string message received ", value);
 			
 			switch(name){
-				case "seat":
-					$("body").css("backgroundColor", "red");
-					console.log('received source with src: '+ value);
+				case "push button":
+					$("#message").text(value);
+					if(value == true){
+						$("body").css("backgroundColor", "salmon");
+					}else{
+						$("body").css("backgroundColor", "lightblue");
+					}
 					break;
-				case "back":
-					$("body").css("backgroundColor", "blue");
+			}
+		}
+
+		function onRangeMessage( name, value ){
+			switch(name){
+				case "good mic":
+					$("#good-mic-value").prepend("<li>"+ value + "</li>");
 					break;
 			}
 		}
@@ -79,6 +98,15 @@
 	</head>
 
 	<body>
+		<button id="btn">Click to fire LED</button>
+		<div>
+			<br><br><br>
+			<h1>Push button is <span id="message">undefined</span>.</h1>
+		</div>
+		<div id="mic-values">
+			<br><br><br>
+			<ul id="good-mic-values"></ul>
+		</div>
 	</body>
 
 </html>

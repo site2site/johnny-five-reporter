@@ -6,7 +6,7 @@
   "publishers":{
     "sensors": [
       {
-        "name": "microphone NE table",
+        "name": "good mic",
         "params": {
           "pin": "A0",
           "freq": 200,
@@ -20,8 +20,65 @@
           "x": 500,
           "y": 250
         }
+      },
+      {
+        "name": "bad mic 1",
+        "params": {
+          "pin": "A1",
+          "freq": 200,
+          "scale": [0,10000]
+        },
+        "signal":{
+          "type": "range",
+          "default": 50
+        },
+        "location":{
+          "x": 500,
+          "y": 250
+        }
+      },
+      {
+        "name": "bad mic 2",
+        "params": {
+          "pin": "A2",
+          "freq": 200,
+          "scale": [0,10000]
+        },
+        "signal":{
+          "type": "range",
+          "default": 50
+        },
+        "location":{
+          "x": 500,
+          "y": 250
+        }
+      },
+      {
+        "name": "bad mic 3",
+        "params": {
+          "pin": "A3",
+          "freq": 200,
+          "scale": [0,10000]
+        },
+        "signal":{
+          "type": "range",
+          "default": 50
+        },
+        "location":{
+          "x": 500,
+          "y": 250
+        }
       }
-    ]
+    ],
+    "button":{
+      "type": "button",
+      "name": "push button",
+      "params": 8,
+      "signal":{
+        "type": "string",
+        "default": "false"
+      }
+    }
   },
   "subscribers":{
     "signal_led": {
